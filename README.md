@@ -62,4 +62,4 @@ Create the following routes for performing CRUD opperations on your resourcee
 * `POST`: test 200, it should respond with the body content for a post request with a valid body
 
 ## Documentation
-In the README.md write documention for starting your server and makeing requests to each endpoint it provides. The documentaion should describe how the server would respond to valid and invalid requests.
+In the README.md write documention for starting your server and how to make requests to each endpoint it provides. The documentaion should describe how the server would respond to valid and invalid requests.
