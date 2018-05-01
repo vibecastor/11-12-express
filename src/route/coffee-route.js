@@ -11,7 +11,7 @@ const coffeeRouter = new Router();
 
 coffeeRouter.post('/api/coffee', jsonParser, (request, response) => {
   logger.log(logger.INFO, 'POST - processing a request');
-  if (!request.body.title) {
+  if (!request.body) {
     logger.log(logger.INFO, 'Responding with a 400 error code');
     return response.sendStatus(400);
   }
