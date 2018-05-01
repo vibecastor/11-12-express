@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint . && jest --coverage --forceExit",
     "dbon": "mkdir -p ./db && mongod --dbpath ./db",
-    "dboff": "killall monogd"
+    "dboff": "killall mongod"
   },
   "jest": {
     "setupFiles": [

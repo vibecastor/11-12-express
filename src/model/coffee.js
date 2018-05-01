@@ -1,6 +1,6 @@
 'use strict';
 
-import mongoose from 'mongoose'; // Mike: ES6
+import mongoose from 'mongoose'; 
 
 const coffeeSchema = mongoose.Schema({
   brand: {
@@ -18,9 +18,9 @@ const coffeeSchema = mongoose.Schema({
   },
   roasted: {
     type: Date,
-    default: () => new Date,
+    default: () => new Date(),
   },
 });
 
 // Mongoose wants to create a model out of a schema
-export default mongoose.model('coffee', noteSchema);
+export default mongoose.model('coffee', coffeeSchema);
