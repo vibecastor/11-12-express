@@ -11,8 +11,16 @@ const coffeeRouter = new Router();
 
 coffeeRouter.post('/api/coffee', jsonParser, (request, response) => {
   logger.log(logger.INFO, 'POST - processing a request');
-  if (!request.body) {
-    logger.log(logger.INFO, 'Responding with a 400 error code');
+  if (!request.body.brand) {
+    logger.log(logger.INFO, 'Responding with a 400 error code, no coffee brand');
+    return response.sendStatus(400);
+  }
+  if (!request.body.origin) {
+    logger.log(logger.INFO, 'Responding with a 400 error code, no coffee origin');
+    return response.sendStatus(400);
+  }
+  if (!request.body.roast) {
+    logger.log(logger.INFO, 'Responding with a 400 error code, no coffee roast');
     return response.sendStatus(400);
   }
   return new Coffee(request.body).save()
@@ -29,7 +37,6 @@ coffeeRouter.post('/api/coffee', jsonParser, (request, response) => {
 
 coffeeRouter.get('/api/coffee/:id', (request, response) => {
   logger.log(logger.INFO, 'GET - processing a request');
-
   return Coffee.findById(request.params.id)
     .then((coffee) => {
       if (!coffee) {

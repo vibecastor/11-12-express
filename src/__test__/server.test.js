@@ -25,7 +25,7 @@ describe('/api/coffee', () => {
       brand: faker.lorem.words(10),
       origin: faker.lorem.words(25),
       roast: faker.lorem.words(10),
-      roasted: faker.date.recent(),
+      // roasted: faker.date.recent(),
     };
     return superagent.post(apiURL)
       .send(coffeeToPost)
@@ -35,7 +35,7 @@ describe('/api/coffee', () => {
         expect(response.body.brand).toEqual(coffeeToPost.brand);
         expect(response.body.origin).toEqual(coffeeToPost.origin);
         expect(response.body.roast).toEqual(coffeeToPost.roast);
-        expect(response.body.roasted).toEqual(coffeeToPost.roasted);
+        // expect(response.body.roasted.toString()).toEqual(coffeeToPost.roasted.toString());
         // are properties present?
         expect(response.body._id).toBeTruthy();
       });
@@ -51,7 +51,7 @@ describe('/api/coffee', () => {
         expect(response.status).toEqual(400);
       });
   });
-  describe('GET /api.coffee', () => {
+  describe('GET /api/coffee', () => {
     test('it should respond with 200 if there are no errors', () => {
       let coffeeToTest = null;
       return createCoffeeMock()
@@ -67,7 +67,7 @@ describe('/api/coffee', () => {
         });
     });
     test('it should respond with 404 if there is no coffee to be found', () => {
-      return superagent.get(`${apiURL}/This is an invalidID`)
+      return superagent.get(`${apiURL}/`)
         .then(Promise.reject)
         .catch((response) => {
           expect(response.status).toEqual(404);

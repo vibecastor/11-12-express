@@ -2,7 +2,7 @@
 
 import mongoose from 'mongoose'; 
 
-const coffeeSchema = mongoose.Schema({
+const Coffee = mongoose.Schema({
   brand: {
     type: String,
     required: true,
@@ -23,4 +23,4 @@ const coffeeSchema = mongoose.Schema({
 });
 
 // Mongoose wants to create a model out of a schema
-export default mongoose.model('coffee', coffeeSchema);
+export default mongoose.model('coffee', Coffee);
