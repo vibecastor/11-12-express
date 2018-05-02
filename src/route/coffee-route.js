@@ -58,4 +58,18 @@ coffeeRouter.get('/api/coffee/:id', (request, response) => {
     });
 });
 
+// coffeeRouter.delete('/api/coffee/:id', findByIdAndRemove(request.params.id) => {
+//   logger.log(logger.INFO, 'DELETE - processing a request');
+//   return Coffee.findById(request.params.id)
+//   .then((coffee) => {
+//     logger.log(logger.INFO, 'DELETE - responding with a 204 status code);
+//     return response.sendStatus(204);
+//   })
+//   .catch((error) => {
+//     logger.log(logger.ERROR, '__delete_ERROR__');
+//     logger.log(logger.ERROR, error);
+//     return response.sendStatus(404);
+//   });
+// }
+
 export default coffeeRouter;
