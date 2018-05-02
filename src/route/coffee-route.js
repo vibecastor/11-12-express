@@ -58,18 +58,22 @@ coffeeRouter.get('/api/coffee/:id', (request, response) => {
     });
 });
 
-// coffeeRouter.delete('/api/coffee/:id', findByIdAndRemove(request.params.id) => {
-//   logger.log(logger.INFO, 'DELETE - processing a request');
-//   return Coffee.findById(request.params.id)
-//   .then((coffee) => {
-//     logger.log(logger.INFO, 'DELETE - responding with a 204 status code);
-//     return response.sendStatus(204);
-//   })
-//   .catch((error) => {
-//     logger.log(logger.ERROR, '__delete_ERROR__');
-//     logger.log(logger.ERROR, error);
-//     return response.sendStatus(404);
-//   });
-// }
+coffeeRouter.delete('/api/coffee/:id', (request, response) => {
+  logger.log(logger.INFO, 'DELETE - processing a request');
+  return Coffee.findByIdAndRemove(request.params.id)
+    .then((coffee) => {
+      if (!coffee.id) {
+        logger.log(logger.INFO, 'DELETE - responding with a 400 status code - no ID');
+        return response.sendStatus(400);
+      }
+      logger.log(logger.INFO, 'DELETED a coffee');
+      return response.sendStatus(204);
+    })
+    .catch((error) => {
+      logger.log(logger.ERROR, '__POST_ERROR__');
+      logger.log(logger.ERROR, error);
+      return response.sendStatus(500);
+    });
+});
 
 export default coffeeRouter;
