@@ -3,17 +3,23 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import logger from '../lib/logger';
-import coffeeRoutes from '../route/coffee-route';
+import coffeeRouter from '../route/coffee-route'; 
+import loggerMiddleware from '../lib/logger-middleware';
+import errorMiddleware from '../lib/error-middleware';
 
 const app = express();
 let server = null;
-
-app.use(coffeeRoutes);
+// (1) first middlewarre
+app.use(loggerMiddleware); // Mike: you removed the logger.log's from the routes
+// (2) then this one...
+app.use(coffeeRouter);
 
 app.all('*', (request, response) => {
   logger.log(logger.INFO, 'Returning a 404 from the catch-all/default route');
   return response.sendStatus(404);
 });
+// (3) Mike: this runs when .next in cofferRouter
+app.use(errorMiddleware);
 
 const startServer = () => {
   return mongoose.connect(process.env.MONGODB_URI)
